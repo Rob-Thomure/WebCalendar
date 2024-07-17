@@ -1,48 +1,57 @@
 package com.example.webcalendar;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 
+@Entity
 public class Event {
 
-    String message;
+    @Id
+    @GeneratedValue
+    private long id;
 
     @NotEmpty @NotBlank
-    String event;
+    private String event;
 
     @NotNull
-    LocalDate date;
+    private LocalDate date;
 
-    public String getMessage() {
-        return message;
+    public long getId() {
+        return id;
     }
 
-    public String getEvent() {
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public @NotEmpty @NotBlank String getEvent() {
         return event;
     }
 
-    public void setEvent(String event) {
-        this.message = "The event has been added!";
+    public void setEvent(@NotEmpty @NotBlank String event) {
         this.event = event;
     }
 
-    public LocalDate getDate() {
+    public @NotNull LocalDate getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(@NotNull LocalDate date) {
         this.date = date;
     }
 
     @Override
     public String toString() {
-        return """
-                "message": "The event has been added!",
-                "event": "%s",
-                "date": "%s"
-                """.formatted(event, date);
+        return "Event{" +
+                "id=" + id +
+                ", event='" + event + '\'' +
+                ", date=" + date +
+                '}';
     }
 }
