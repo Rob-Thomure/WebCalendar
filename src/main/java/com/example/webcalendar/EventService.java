@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EventService {
@@ -27,4 +28,13 @@ public class EventService {
         return eventRepository.findEventByDate(date);
 
     }
+
+    public Optional<Event> findById(long id) {
+        return eventRepository.findById(id);
+    }
+
+    public void delete(long id) {
+        eventRepository.deleteById(id);
+    }
+
 }
